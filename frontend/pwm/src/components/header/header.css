@@ -28,11 +28,15 @@ li {
 }
 .logo {
   font-size: 30px;
+  display: flex;
+  position: absolute;
+  top: 20px;
+  left: 35px;
 }
 .nav-links {
   display: flex;
   justify-content: flex-end;
-  width: 75%;
+  width: 95%;
 }
 
 .nav-links li {
@@ -64,7 +68,7 @@ button {
   .logo {
     display: flex;
     position: absolute;
-    top: 15px;
+    top: 25px;
     left: 35px;
   }
   .nav-links {

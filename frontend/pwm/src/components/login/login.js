@@ -1,58 +1,72 @@
-import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
-// import { useAuth } from "../contexts/AuthContext"
-import { Link, useNavigate  } from "react-router-dom"
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './login.css';
+import axios from 'axios';
 
-export default function Login() {
-  // const emailRef = useRef()
-  // const passwordRef = useRef()
-  // const { login } = useNavigate ()
-  // const [error, setError] = useState("")
-  // const [loading, setLoading] = useState(false)
-  // const history = useNavigate ()
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault()
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    try {
+      const response = await axios.post('http://localhost:8000/api/login', {
+        email: email,
+        password: password
+      }, { withCredentials: true });
 
-  //   try {
-  //     setError("")
-  //     setLoading(true)
-  //     await login(emailRef.current.value, passwordRef.current.value)
-  //     history.push("/")
-  //   } catch {
-  //     setError("Failed to log in")
-  //   }
-
-  //   setLoading(false)
-  // }
+      // Successful login
+      if (response.status === 200) {
+        // Redirect to dashboard or home page using React Router
+        // Example: history.push('/');
+        window.location.href = '/';
+        console.log('Login successful');
+      }
+    } catch (error) {
+      // Failed login
+      if (error.response && error.response.status === 401) {
+        setError('Invalid email or password');
+      } else {
+        console.error('Login failed:', error);
+        setError('Something went wrong. Please try again later.');
+      }
+    }
+  };
 
   return (
-    <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Log In</h2>
-          {/* {error && <Alert variant="danger">{error}</Alert>} */}
-          <Form /*onSubmit={handleSubmit}*/>
-            <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" /* ref={emailRef}*/ required />
-            </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" /*ref={passwordRef}*/ required />
-            </Form.Group>
-            <Button /*disabled={loading}*/ className="w-100" type="submit">
-              Log In
-            </Button>
-          </Form>
-          <div className="w-100 text-center mt-3">
-            <Link to="/forgot-password">Forgot Password?</Link>
-          </div>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
+    <div className='body'>
+      <div id="container" className="container h-width py-5 login-component">
+        <div className="title"><h1>Log In</h1></div>
+        <div className="social-container">
+          <a href="#" className="social">
+            <FontAwesomeIcon icon="fa-brands fa-facebook" />
+          </a>
+          <a href="#" className="social">
+            <FontAwesomeIcon icon={["fab", "google-plus-g"]} />
+          </a>
+          <a href="#" className="social">
+            <FontAwesomeIcon icon={["fab", "linkedin-in"]} />
+          </a>
+        </div>
+        <div className="register"><a href="/signup" id="forgotten" className="forgot">Not registered? Create your account.</a></div>
+        <div className="inp py-3">
+          <form onSubmit={handleLogin}>
+            <div className="infield">
+              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} name="email" />
+              <label></label>
+            </div>
+            <div className="infield">
+              <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <label></label>
+            </div>
+            <a href="#" className="forgot">Forgot your password?</a>
+            <button className="login" type="submit">Log In</button>
+          </form>
+        </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
+
+export default Login;
