@@ -3,7 +3,9 @@ from django.conf import settings
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import UserSerializer
+
+from .models import User
+from .serializers import UserListSerializer, UserSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
@@ -60,3 +62,13 @@ class LogoutView(APIView):
         response.delete_cookie('token')
         response.data = {'message': 'success'}
         return response
+    
+
+
+
+@api_view(['GET'])
+def users(request):
+        users = User.objects.filter(role='client')      # Filter clients
+        serializer = UserListSerializer(users, many=True)
+        return Response(serializer.data)
+
