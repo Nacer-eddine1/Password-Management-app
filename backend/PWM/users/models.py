@@ -23,10 +23,10 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class User(AbstractBaseUser):
-    ROLES=[
-        ('admin', 'Admin'),
-        ('client', 'Client'),
-    ]
+    # ROLES=[
+    #     ('admin', 'Admin'),
+    #     ('client', 'Client'),
+    # ]
 
     email = models.EmailField(
         max_length=255, verbose_name=("Email Address"), unique=True
@@ -39,7 +39,7 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
-    role = models.CharField(max_length=10, choices=ROLES, default='client')
+    role = models.CharField(max_length=10, default='client')
 
     objects = CustomUserManager()
 
