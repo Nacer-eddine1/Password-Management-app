@@ -56,17 +56,7 @@ const Login = () => {
         // Redirect to home page using React Router
         navigate('/');
         // window.location.href = '/';
-        toast.success('Login successful!', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.success('Login successful!');
         // console.log('Login successful');
         // alert('Login successful');
       }
@@ -75,33 +65,13 @@ const Login = () => {
       if (error.response && error.response.status === 403) {
         // setError('Invalid email or password');
         // alert('Invalid email or password');
-        toast.error('Invalid email or password', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.error('Invalid email or password');
 
       } else {
         console.error('Login failed:', error);
         // setError('Something went wrong. Please try again later.');
         // alert('Something went wrong. Please try again later.');
-        toast.error('Something went wrong. Please try again later', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.error('Something went wrong. Please try again later');
 
       }
     }

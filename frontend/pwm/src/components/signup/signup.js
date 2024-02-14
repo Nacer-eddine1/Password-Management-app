@@ -108,17 +108,7 @@ const Signup = () => {
         // Redirect to home page using React Router
         navigate('/login');
         // window.location.href = '/';
-        toast.success('Signup successful!', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.success('Signup successful!');
         // Redirect or show success message
         // console.log('Registration successful');
       }
@@ -128,48 +118,18 @@ const Signup = () => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         console.error('Error response from server:', error.response.data);
-        toast.error('Login failed', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.error('Login failed');
         // setError(error.response.data.message);
       } else if (error.request) {
         // The request was made but no response was received
         console.error('No response received:', error.request);
         // setError('No response received from server. Please try again later.');
-        toast.error('No response received from server. Please try again later.', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.error('No response received from server. Please try again later.');
       } else {
         // Something happened in setting up the request that triggered an Error
         console.error('Error setting up request:', error.message);
         // setError('An unexpected error occurred. Please try again later.');
-        toast.error('An unexpected error occurred. Please try again later.', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          // transition: Bounce,
-          });
+        toast.error('An unexpected error occurred. Please try again later.');
       }
     }
   };
