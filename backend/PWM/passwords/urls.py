@@ -13,5 +13,5 @@ urlpatterns = [
     path('passwords/update/<int:password_id>/', update_password, name='update_password'),
 
     # Endpoint to delete a specific password
-    path('passwords/delete/<int:pk>/', delete_password, name='delete_password'),
+    path('passwords/delete/<int:password_id>/', delete_password, name='delete_password'),
 ]

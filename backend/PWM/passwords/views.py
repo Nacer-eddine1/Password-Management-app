@@ -47,7 +47,7 @@ def delete_password(request, password_id):
     try:
         password = Passwords.objects.get(id=password_id)
     except Passwords.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response({"detail": "Password not found."}, status=status.HTTP_404_NOT_FOUND)
 
     password.delete()
-    return Response(status=status.HTTP_204_NO_CONTENT)
+    return Response({"detail": "Password deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
