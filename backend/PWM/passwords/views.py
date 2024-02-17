@@ -30,11 +30,10 @@ def create_password(request, user_id):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['PUT'])
-def update_password(request, user_id, password_id):
+def update_password(request, password_id):
     try:
-        user = User.objects.get(id=user_id)
-        password = Passwords.objects.get(id=password_id, user=user)
-    except (User.DoesNotExist, Passwords.DoesNotExist):
+        password = Passwords.objects.get(id=password_id)
+    except Passwords.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     serializer = PasswordSerializer(password, data=request.data)
@@ -44,11 +43,10 @@ def update_password(request, user_id, password_id):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['DELETE'])
-def delete_password(request, user_id, password_id):
+def delete_password(request, password_id):
     try:
-        user = User.objects.get(id=user_id)
-        password = Passwords.objects.get(id=password_id, user=user)
-    except (User.DoesNotExist, Passwords.DoesNotExist):
+        password = Passwords.objects.get(id=password_id)
+    except Passwords.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     password.delete()
