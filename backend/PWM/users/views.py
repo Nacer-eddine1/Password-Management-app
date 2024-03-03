@@ -52,7 +52,7 @@ class LoginView(APIView):
 
         # Set the JWT token as a cookie in the response
         response = Response({'message': 'Login successful.'}, status=status.HTTP_200_OK)
-        response.set_cookie(key='token', value=token, httponly=True)
+        response.set_cookie(key='token', value=token)
         return response
     
 # Logout View: Clears the JWT token cookie in the response

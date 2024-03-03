@@ -100,7 +100,7 @@ const AddUserModal = (props) => {
             props.onHide();
         },
         (error)=>{
-            alert("Failed to Add User");
+          toast.error('Failed to Add User!');
         })
     }
 

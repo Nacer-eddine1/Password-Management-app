@@ -4,10 +4,10 @@ from .views import get_passwords, create_password, update_password, delete_passw
 # Define URL patterns for passwords-related views
 urlpatterns = [
     # Endpoint to create a new password
-    path('passwords/create/<int:user_id>/', create_password, name='create_password'),
+    path('passwords/create/', create_password, name='create_password'),
 
     # Endpoint to retrieve all passwords for a specific user
-    path('passwords/<int:user_id>/', get_passwords, name='get_passwords'),
+    path('passwords/', get_passwords, name='get_passwords'),
 
     # Endpoint to update a specific password
     path('passwords/update/<int:password_id>/', update_password, name='update_password'),
